@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import api from '@/lib/api'
 
-// --- API Functions ---
+// API Functions
 
 const fetchConversations = async () => {
   const { data } = await api.get('/conversations')
@@ -59,7 +59,7 @@ const deleteConversation = async (id: number) => {
   return data.data || data
 }
 
-// --- Main Factory Hook ---
+// Main Factory Hook
 
 export const useConversationApi = () => {
   const queryClient = useQueryClient()
@@ -68,15 +68,15 @@ export const useConversationApi = () => {
     useQuery({
       queryKey: ['conversations'],
       queryFn: fetchConversations,
-      staleTime: 1000 * 60,
+      staleTime: 1000 * 60 * 5
     })
 
   const useGetConversationDetails = (id: number) =>
     useQuery({
       queryKey: ['conversations', id],
       queryFn: () => fetchConversationDetails(id),
-      enabled: !!id,
-      staleTime: 1000 * 60 * 5
+      staleTime: 1000 * 60 * 5,
+      enabled: !!id
     })
 
   const useCreatePrivateChat = () =>
@@ -112,7 +112,7 @@ export const useConversationApi = () => {
         queryClient.invalidateQueries({
           queryKey: ['conversations', variables.conversationId]
         })
-        toast.success('Member added')
+        toast.success('Member added successfully')
       },
       onError: (error: any) => {
         toast.error(error.response?.data?.message || 'Failed to add member')
@@ -127,9 +127,10 @@ export const useConversationApi = () => {
         queryClient.invalidateQueries({
           queryKey: ['conversations', variables.conversationId]
         })
+        toast.success('Member removed successfully')
       },
       onError: (error: any) => {
-        toast.error(error.response?.data?.message || 'Action failed')
+        toast.error(error.response?.data?.message || 'Failed to remove member')
       }
     })
 
@@ -138,10 +139,10 @@ export const useConversationApi = () => {
       mutationFn: deleteConversation,
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['conversations'] })
-        toast.success('Conversation removed')
+        toast.success('Conversation deleted successfully')
       },
       onError: (error: any) => {
-        toast.error(error.response?.data?.message || 'Failed to delete')
+        toast.error(error.response?.data?.message || 'Failed to delete chat')
       }
     })
 

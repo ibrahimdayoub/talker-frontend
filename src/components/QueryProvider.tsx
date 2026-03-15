@@ -9,7 +9,6 @@ export default function QueryProvider({ children }: { children: ReactNode }) {
             queries: {
                 staleTime: 60 * 1000,
                 retry: 1,
-                // Professional Tip: 
                 // prevents refetching when user switches tabs
                 refetchOnWindowFocus: false,
             },

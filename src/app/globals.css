@@ -3,6 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+    --color-white-bg: #f9fafb;
+    --color-dark-bg: #0d1117;
+    --color-surface: #161c22;
+
     --animate-blob: blob 7s infinite;
 
     @keyframes blob {
@@ -36,11 +40,9 @@
     .animation-delay-4000 {
         animation-delay: 4s;
     }
-}
 
-@layer base {
     .custom-scrollbar {
-       scrollbar-width: thin;
+        scrollbar-width: thin;
         scrollbar-color: transparent transparent;
     }
 
@@ -66,5 +68,89 @@
 
     .custom-scrollbar:hover::-webkit-scrollbar-thumb {
         background-color: #e2e8f0;
+    }
+
+    .chat-background-pattern {
+        background-color: var(--color-white-bg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Cpath fill='%23c0b6a9' fill-opacity='0.15' d='M50 0L0 50L50 100L100 50Z'/%3E%3C/svg%3E");
+    }
+
+    .dark .chat-background-pattern {
+        background-color: var(--color-dark-bg);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Cpath fill='%23263640' fill-opacity='0.1' d='M50 0L0 50L50 100L100 50Z'/%3E%3C/svg%3E");
+    }
+
+    /* Background Pattern 01 */
+
+    .background-pattern-01 {
+        background-color: var(--color-white-bg);
+        background-image: radial-gradient(circle at 10px 10px, #c0b6a9 1.5px, transparent 1.5px);
+        background-size: 30px 30px;
+    }
+
+    .dark .background-pattern-01 {
+        background-color: var(--color-dark-bg);
+        background-image: radial-gradient(circle at 10px 10px, #263640 1.5px, transparent 1.5px);
+        background-size: 30px 30px;
+    }
+
+    /* Background Pattern 02 */
+
+    .background-pattern-02 {
+        background-color: var(--color-white-bg);
+        background-image: repeating-linear-gradient(45deg, #c0b6a9 0px, #c0b6a9 1px, transparent 1px, transparent 20px);
+    }
+
+    .dark .background-pattern-02 {
+        background-color: var(--color-dark-bg);
+        background-image: repeating-linear-gradient(45deg, #263640 0px, #263640 1px, transparent 1px, transparent 20px);
+    }
+
+    /* Background Pattern 03 */
+
+    .background-pattern-03 {
+        background-color: var(--color-white-bg);
+        background-image:
+            linear-gradient(#c0b6a9 1px, transparent 1px),
+            linear-gradient(90deg, #c0b6a9 1px, transparent 1px);
+        background-size: 25px 25px;
+    }
+
+    .dark .background-pattern-03 {
+        background-color: var(--color-dark-bg);
+        background-image:
+            linear-gradient(#263640 1px, transparent 1px),
+            linear-gradient(90deg, #263640 1px, transparent 1px);
+        background-size: 25px 25px;
+    }
+
+    /* Background Pattern 04 */
+
+    .background-pattern-04 {
+        background-color: var(--color-white-bg);
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L20 20 L0 20 Z' fill='%23c0b6a9' fill-opacity='0.1'/%3E%3Cpath d='M20 20 L40 20 L20 40 Z' fill='%23c0b6a9' fill-opacity='0.1'/%3E%3C/svg%3E");
+        background-size: 40px 40px;
+    }
+
+    .dark .background-pattern-04 {
+        background-color: var(--color-dark-bg);
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L20 20 L0 20 Z' fill='%23263640' fill-opacity='0.15'/%3E%3Cpath d='M20 20 L40 20 L20 40 Z' fill='%23263640' fill-opacity='0.15'/%3E%3C/svg%3E");
+        background-size: 40px 40px;
+    }
+
+    /* Background Pattern 05 */
+
+    .background-pattern-05 {
+        background-color: var(--color-white-bg);
+        background-image: radial-gradient(circle at 20px 20px, #c0b6a9 2px, transparent 2px),
+            radial-gradient(circle at 40px 40px, #c0b6a9 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .dark .background-pattern-05 {
+        background-color: var(--color-dark-bg);
+        background-image: radial-gradient(circle at 20px 20px, #263640 2px, transparent 2px),
+            radial-gradient(circle at 40px 40px, #263640 1px, transparent 1px);
+        background-size: 40px 40px;
     }
 }

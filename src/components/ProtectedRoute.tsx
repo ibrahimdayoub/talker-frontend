@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2 } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -39,12 +39,12 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     }, [mounted, isAuthenticated, pathname, router, isPublicPage]);
 
     const LoadingScreen = () => (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-5 bg-white dark:bg-[#0f172a] transition-all duration-300">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-50 h-50 bg-orange-500/25 dark:bg-purple-500/25 rounded-full blur-[50px] animate-pulse" />
-            <Loader2 size={50} className="text-purple-500 dark:text-orange-500 animate-spin" />
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-5 bg-white-bg dark:bg-dark-bg transition-all duration-250 background-pattern-05">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-50 h-50 bg-rose-500/25 dark:bg-indigo-500/25 rounded-full blur-[50px] animate-pulse" />
+            <Loader2 size={50} className="text-indigo-500 dark:text-rose-500 animate-spin" />
             <div className="space-y-2.5 text-center">
-                <h2 className=" text-2xl text-slate-800 dark:text-white font-black">
-                    Bero <span className="text-purple-500 dark:text-orange-500">Talker</span>
+                <h2 className=" text-2xl text-surface dark:text-white font-black">
+                    Bero <span className="text-indigo-500 dark:text-rose-500">Talker</span>
                 </h2>
                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest animate-pulse">
                     Please Wait

@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast'
 import { useAuthStore } from '@/store/useAuthStore'
 import api from '@/lib/api'
 
-// --- API Functions ---
+// API Functions
 
 const fetchProfile = async (identifier: string) => {
   const { data } = await api.get(`/users/${identifier}`)
@@ -15,7 +15,7 @@ const searchUsers = async (query: string) => {
   return data
 }
 
-const updateProfileData = async (payload: {
+const updateProfile = async (payload: {
   displayname?: string
   bio?: string
 }) => {
@@ -23,7 +23,7 @@ const updateProfileData = async (payload: {
   return data
 }
 
-const uploadAvatar = async (file: File) => {
+const updateAvatar = async (file: File) => {
   const formData = new FormData()
   formData.append('file', file)
   const { data } = await api.patch('/users/update-avatar', formData, {
@@ -32,17 +32,13 @@ const uploadAvatar = async (file: File) => {
   return data
 }
 
-// --- Main Factory Hook ---
+// Main Factory Hook
 
 export const useUserApi = () => {
   const queryClient = useQueryClient()
   const updateUserStore = useAuthStore(state => state.updateUser)
 
-  /**
-   * Fetch profile by identifier.
-   * Manual refetch only for 'me'.
-   */
-  const useGetProfile = (identifier: string = 'me') =>
+  const useGetProfile = (identifier:string = 'me') =>
     useQuery({
       queryKey: ['user', identifier],
       queryFn: async () => {
@@ -50,13 +46,10 @@ export const useUserApi = () => {
         if (identifier === 'me') updateUserStore(res.data)
         return res.data
       },
-      enabled: identifier !== 'me',
-      staleTime: 1000 * 60 * 5
+      staleTime: 1000 * 60 * 5,
+      enabled: identifier !== 'me'
     })
 
-  /**
-   * Search users. Always enabled to return all users if query is empty.
-   */
   const useSearch = (query: string = '') =>
     useQuery({
       queryKey: ['users', 'search', query],
@@ -68,12 +61,9 @@ export const useUserApi = () => {
       enabled: true
     })
 
-  /**
-   * Update text-based profile info.
-   */
   const useUpdateProfile = () =>
     useMutation({
-      mutationFn: updateProfileData,
+      mutationFn: updateProfile,
       onSuccess: res => {
         updateUserStore(res.data)
         queryClient.setQueryData(['user', 'me'], res.data)
@@ -85,12 +75,9 @@ export const useUserApi = () => {
       }
     })
 
-  /**
-   * Handle profile picture uploads.
-   */
   const useUpdateAvatar = () =>
     useMutation({
-      mutationFn: uploadAvatar,
+      mutationFn: updateAvatar,
       onSuccess: res => {
         updateUserStore(res.data)
         queryClient.invalidateQueries({ queryKey: ['user', 'me'] })

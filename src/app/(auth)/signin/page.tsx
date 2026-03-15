@@ -35,41 +35,41 @@ export default function Signin() {
     };
 
     return (
-        <div className="relative min-h-screen p-5 flex items-center justify-center bg-white dark:bg-[#0f172a] transition-colors duration-300">
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/5 to-orange-600/5 dark:from-purple-600/10 dark:to-orange-600/10 pointer-events-none" />
-            <div className="relative w-full max-w-md p-5 sm:px-10 sm:py-7.5 space-y-10 bg-white dark:bg-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl border border-slate-200 dark:border-slate-800">
+        <div className="relative min-h-screen p-5 flex items-center justify-center bg-white-bg dark:bg-dark-bg transition-all duration-250 background-pattern-05">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-800/5 to-rose-600/10 pointer-events-none" />
+            <div className="relative w-full max-w-md p-5 sm:px-10 sm:py-7.5 space-y-10 bg-white-bg/70 dark:bg-dark-bg/90 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl border border-slate-200 dark:border-surface">
                 {/* Header */}
                 <div className="flex flex-col gap-1.25 items-center text-center">
-                    <Link href="/" title='Bero Talker Messanger' className="h-15 w-15 mb-1.25 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-orange-600 shadow-lg shadow-purple-600/25 cursor-pointer">
+                    <Link href="/" title='Bero Talker Messanger' className="h-15 w-15 mb-1.25 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-rose-500 shadow-lg shadow-indigo-500/25 cursor-pointer">
                         <span className="text-2xl font-bold italic text-white">BT</span>
                     </Link>
-                    <h1 className="text-3xl font-bold text-slate-800 dark:text-white">Welcome Back</h1>
-                    <p className="text-slate-600 dark:text-slate-400">Good to see you again, Sign in to pick up where you left off!</p>
+                    <h1 className="text-3xl font-bold text-surface dark:text-white">Welcome Back</h1>
+                    <p className="text-slate-500 dark:text-slate-400">Good to see you again, Sign in to pick up where you left off!</p>
                 </div>
                 {/* Form */}
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Email Address */}
                     <div className="space-y-2.5">
-                        <label className="flex items-center gap-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest ml-1.25">
-                            <Mail size={15} className="text-purple-600" /> Email Address
+                        <label className="flex items-center gap-2.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1.25">
+                            <Mail size={15} className="text-indigo-500" /> Email Address
                         </label>
                         <input
                             {...register("email")}
                             type="email"
                             placeholder="bero@example.com"
                             className={cn(
-                                "w-full px-3.5 py-2.5 rounded-xl border outline-none transition-all bg-slate-100 dark:bg-slate-800/50 text-slate-800 dark:text-white focus:ring-2",
+                                "w-full px-3.5 py-2.5 rounded-xl border outline-none transition-all duration-250 bg-slate-100 dark:bg-surface/50 text-surface dark:text-white focus:ring-2",
                                 errors.email
                                     ? "border-red-500 focus:ring-transparent"
-                                    : "border-slate-200 dark:border-slate-800 focus:ring-purple-600/25 focus:border-purple-600"
+                                    : "border-slate-200 dark:border-surface focus:ring-indigo-500/25 focus:border-indigo-500"
                             )}
                         />
                         {errors.email && <p className="text-red-500 text-xs mt-1 ml-1">{errors.email.message as string}</p>}
                     </div>
                     {/* Password */}
                     <div className="space-y-2.5">
-                        <label className="flex items-center gap-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest ml-1.25">
-                            <Lock size={15} className="text-orange-600" /> Password
+                        <label className="flex items-center gap-2.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1.25">
+                            <Lock size={15} className="text-rose-500" /> Password
                         </label>
                         <div className="relative group">
                             <input
@@ -77,16 +77,16 @@ export default function Signin() {
                                 type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
                                 className={cn(
-                                    "w-full px-3.5 py-2.5 pr-10 rounded-xl border outline-none transition-all bg-slate-100 dark:bg-slate-800/50 text-slate-800 dark:text-white focus:ring-2",
+                                    "w-full px-3.5 py-2.5 pr-10 rounded-xl border outline-none transition-all duration-250 bg-slate-100 dark:bg-surface/50 text-surface dark:text-white focus:ring-2",
                                     errors.password
                                         ? "border-red-500 focus:ring-transparent"
-                                        : "border-slate-200 dark:border-slate-800 focus:ring-orange-600/25 focus:border-orange-600"
+                                        : "border-slate-200 dark:border-surface focus:ring-rose-500/25 focus:border-rose-500"
                                 )}
                             />
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-orange-600 transition-colors cursor-pointer"
+                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-rose-500 transition-all duration-250 cursor-pointer"
                             >
                                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                             </button>
@@ -95,10 +95,10 @@ export default function Signin() {
                     </div>
                     {/* Sign Up */}
                     <div className="flex justify-between">
-                        <span className="flex items-center gap-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest ml-1.25">
-                            <Sparkles size={15} className="text-purple-600" /> New Here?
+                        <span className="flex items-center gap-2.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1.25">
+                            <Sparkles size={15} className="text-indigo-500" /> New Here?
                         </span>
-                        <Link href="/signup" className="text-purple-600 dark:text-purple-400 text-sm font-bold hover:text-orange-600 dark:hover:text-orange-400 transition-all underline underline-offset-2">
+                        <Link href="/signup" className="text-indigo-500 dark:text-indigo-400 text-sm font-bold hover:text-rose-500 dark:hover:text-rose-400 transition-all duration-250 underline underline-offset-2">
                             Create Account
                         </Link>
                     </div>
@@ -107,10 +107,10 @@ export default function Signin() {
                         type="submit"
                         disabled={isSigningIn}
                         className={cn(
-                            "w-full py-2.5 flex items-center justify-center gap-2.5 text-white font-bold text-lg tracking-wider rounded-xl shadow-xl shadow-purple-600/25 transform transition-all active:scale-95 group",
+                            "w-full py-2.5 flex items-center justify-center gap-2.5 text-white font-bold text-lg tracking-wider rounded-xl shadow-xl shadow-indigo-500/25 transform transition-all duration-250 active:scale-95 group",
                             isSigningIn
-                                ? "bg-purple-600 dark:bg-purple-400 cursor-not-allowed"
-                                : "bg-gradient-to-r from-purple-600 to-orange-600 hover:shadow-purple-600/50 cursor-pointer"
+                                ? "bg-indigo-500 dark:bg-indigo-400 cursor-not-allowed"
+                                : "bg-gradient-to-r from-indigo-500 to-rose-500 hover:shadow-indigo-500/50 cursor-pointer"
                         )}
                     >
                         {

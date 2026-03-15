@@ -8,6 +8,6 @@ export function cn (...inputs: ClassValue[]) {
 /*
     className={cn(
         "max-w-xs p-5 rounded-lg text-white", 
-        isMe ? "bg-orange-500" : "bg-purple-500"
+        isMe ? "bg-rose-500" : "bg-indigo-500"
     )}
 */

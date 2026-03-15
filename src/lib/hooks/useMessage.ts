@@ -2,21 +2,21 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import api from '@/lib/api'
 
-// --- API Functions ---
+// API Functions
 
 const fetchMessages = async (conversationId: number, page: number = 1) => {
   const { data } = await api.get(
     `/messages/${conversationId}?page=${page}&limit=50`
   )
-  return data // Server returns an array of messages
+  return data
 }
 
-const editMessageApi = async ({ id, text }: { id: number; text: string }) => {
+const editMessage = async ({ id, text }: { id: number; text: string }) => {
   const { data } = await api.patch(`/messages/${id}`, { text })
   return data
 }
 
-const deleteMessageApi = async (id: number) => {
+const deleteMessage = async (id: number) => {
   const { data } = await api.delete(`/messages/${id}`)
   return data
 }
@@ -26,50 +26,38 @@ const markMessagesAsRead = async (conversationId: number) => {
   return data
 }
 
-// --- Main Factory Hook ---
+// Main Factory Hook
 
 export const useMessageApi = () => {
   const queryClient = useQueryClient()
 
-  /**
-   * Fetch messages for a specific conversation.
-   */
   const useGetMessages = (conversationId: number) =>
     useQuery({
       queryKey: ['messages', conversationId],
       queryFn: () => fetchMessages(conversationId),
-      enabled: !!conversationId,
-      staleTime: 1000 * 60 * 2 // 2 minutes cache
+      staleTime: 1000 * 60 * 5,
+      enabled: !!conversationId
     })
 
-  /**
-   * Edit message via HTTP (Alternative to Socket).
-   */
   const useEditMessage = () =>
     useMutation({
-      mutationFn: editMessageApi,
+      mutationFn: editMessage,
       onSuccess: (_, variables) => {
         // Optimistic update could be handled here or via Socket listener
-        toast.success('Message updated')
+        toast.success('Message updated successfully')
       },
       onError: () => toast.error('Failed to edit message')
     })
 
-  /**
-   * Delete message via HTTP.
-   */
   const useDeleteMessage = () =>
     useMutation({
-      mutationFn: deleteMessageApi,
+      mutationFn: deleteMessage,
       onSuccess: () => {
-        toast.success('Message deleted')
+        toast.success('Message deleted successfully')
       },
       onError: () => toast.error('Failed to delete message')
     })
 
-  /**
-   * Mark messages as read.
-   */
   const useMarkRead = () =>
     useMutation({
       mutationFn: markMessagesAsRead,

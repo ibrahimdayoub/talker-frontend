@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
-import api from '@/lib/api'
 import { useAuthStore } from '@/store/useAuthStore'
+import api from '@/lib/api'
 
-// --- API Functions (Internal) ---
+// API Functions
 
 const signupUser = async (payload: any) => {
   const { data } = await api.post('/auth/signup', payload)
@@ -21,7 +21,7 @@ const logoutUser = async () => {
   return data
 }
 
-// --- Main Factory Hook ---
+// Main Factory Hook
 
 export const useAuthApi = () => {
   const router = useRouter()
@@ -46,9 +46,6 @@ export const useAuthApi = () => {
     router.replace('/chat')
   }
 
-  /**
-   * Hook for User Signup
-   */
   const useSignup = () =>
     useMutation({
       mutationFn: signupUser,
@@ -62,9 +59,6 @@ export const useAuthApi = () => {
       }
     })
 
-  /**
-   * Hook for User Signin
-   */
   const useSignin = () =>
     useMutation({
       mutationFn: signinUser,
@@ -78,9 +72,6 @@ export const useAuthApi = () => {
       }
     })
 
-  /**
-   * Hook for User Logout
-   */
   const useLogout = () =>
     useMutation({
       mutationFn: logoutUser,
