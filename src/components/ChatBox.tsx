@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import { Menu, MessageSquare, MoreVertical, Paperclip, Phone, Send, Smile, Video, Loader2, Ghost } from 'lucide-react';
 import { debounce } from 'lodash';
 import { User } from '@/types/user';
@@ -99,15 +99,12 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
             });
     }, [typingUsers, selectedChatId, currentUserProfile?.username, conversation]);
 
-    useEffect(() => {
-        if (scrollRef.current) {
-            const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-            const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
-
-            if (isNearBottom) {
-                scrollRef.current.scrollTop = scrollHeight;
+    useLayoutEffect(() => {
+        requestAnimationFrame(() => {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
             }
-        }
+        });
     }, [displayMessages]);
 
     useEffect(() => {
@@ -154,7 +151,7 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
 
     return (
         <>
-            <main className="relative h-full flex-1 flex flex-col bg-white-bg dark:bg-dark-bg transition-all duration-250">
+            <main className="relative flex-1 bg-white-bg dark:bg-dark-bg transition-all duration-250">
                 {
                     selectedChatId ? (
                         isLoading ? (
@@ -162,7 +159,7 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                 <Loader2 className="animate-spin text-indigo-500 dark:text-rose-500" size={35} />
                             </div>
                         ) : (
-                            <>
+                            <div className='h-full flex-1 flex flex-col'>
                                 {/* Header */}
                                 <div className="h-15 p-5 py-7.5 flex-none flex items-center justify-between bg-white-bg dark:bg-dark-bg border-b border-slate-200 dark:border-surface z-10 transition-all duration-250">
                                     <div className="flex items-center gap-3.5 hover:opacity-85 transition-all duration-250 cursor-pointer" onClick={() => setIsConvInfoModalOpen(true)}>
@@ -170,13 +167,16 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                             <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-rose-500 text-white text-sm font-bold rounded-xl shadow-md shadow-rose-500/20 overflow-hidden">
                                                 {chatAvatar ? <img src={`${baseUrl}${chatAvatar}`} className="w-full h-full object-cover" alt="Avatar" /> : chatName?.[0]?.toUpperCase() || "G"}
                                             </div>
-                                            <div className={cn(
-                                                "absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 border-2 border-white dark:border-dark-bg rounded-full",
-                                                isPrivate && otherParticipant?.isOnline ? "bg-green-500" : "bg-slate-400"
-                                            )}></div>
+                                            {
+                                                isPrivate &&
+                                                <div className={cn(
+                                                    "absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 border-2 border-white dark:border-dark-bg rounded-full",
+                                                    otherParticipant?.isOnline ? "bg-green-500" : "bg-slate-400"
+                                                )}></div>
+                                            }
                                         </div>
                                         <div>
-                                            <h2 className="text-surface dark:text-white text-base sm:text-lg font-bold truncate max-w-[150px] sm:max-w-none">{chatName}</h2>
+                                            <h2 className="text-surface dark:text-white text-base md:text-lg font-bold truncate max-w-[150px] md:max-w-none">{chatName}</h2>
                                             <p className="text-rose-500 dark:text-indigo-500 text-[10px] font-bold tracking-tight uppercase">
                                                 {activeTypingUsers.length > 0 ? (
                                                     <span className="animate-pulse">
@@ -193,10 +193,10 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <button className="hidden sm:block p-1.25 lg:px-2.5 text-slate-500 hover:text-rose-500 transition-all duration-250 cursor-pointer"><Phone size={20} /></button>
-                                        <button className="hidden sm:block p-1.25 lg:px-2.5 text-slate-500 hover:text-indigo-500 transition-all duration-250 cursor-pointer"><Video size={20} /></button>
+                                        <button className="hidden md:block p-1.25 lg:px-2.5 text-slate-500 hover:text-rose-500 transition-all duration-250 cursor-pointer"><Phone size={20} /></button>
+                                        <button className="hidden md:block p-1.25 lg:px-2.5 text-slate-500 hover:text-indigo-500 transition-all duration-250 cursor-pointer"><Video size={20} /></button>
                                         <button className="p-1.25 lg:px-2.5 text-slate-500 cursor-pointer"><MoreVertical size={20} /></button>
-                                        <button onClick={(e) => { e.stopPropagation(); setIsSidebarOpen(true); }} className="sm:hidden p-1.25 lg:px-2.5 text-slate-500 cursor-pointer"><Menu size={20} /></button>
+                                        <button onClick={(e) => { e.stopPropagation(); setIsSidebarOpen(true); }} className="md:hidden p-1.25 lg:px-2.5 text-slate-500 cursor-pointer"><Menu size={20} /></button>
                                     </div>
                                 </div>
                                 {/* Messages */}
@@ -228,11 +228,11 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                                         };
 
                                                         return (
-                                                            <div key={msg.id} className={cn("flex items-end gap-2.5 max-w-[75%] sm:max-w-[50%]", isMe ? "ml-auto flex-row-reverse" : "")}>
+                                                            <div key={msg.id} className={cn("flex items-end gap-2.5 max-w-[75%] md:max-w-[50%]", isMe ? "ml-auto flex-row-reverse" : "")}>
                                                                 {!isMe && (
                                                                     <div
                                                                         className={cn(
-                                                                            "w-10 h-10 flex-none flex items-center justify-center bg-gradient-to-tr from-rose-200/50 to-rose-500/50 dark:from-indigo-500/25 dark:to-indigo-800/50 text-rose-400 dark:text-indigo-200 text-sm font-black border border-slate-200/50 dark:border-indigo-800/50 rounded-lg hover:scale-110 transition-all duration-250 cursor-pointer overflow-hidden",
+                                                                            "w-10 h-10 flex-none flex items-center justify-center bg-gradient-to-tr from-rose-200/50 to-rose-500/50 dark:from-indigo-500/25 dark:to-indigo-800/50 text-rose-400 dark:text-indigo-200 text-sm font-black border border-slate-200/50 dark:border-indigo-800/50 rounded-xl hover:scale-110 transition-all duration-250 cursor-pointer overflow-hidden",
                                                                             !isLastInGroup && "invisible"
                                                                         )}
                                                                         onClick={() => handleUserClick(msg.user)}
@@ -285,7 +285,7 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                                     />
                                                 ) : (
                                                     <div className="h-full flex flex-col items-center justify-center gap-3.5 text-center p-10 opacity-80">
-                                                        <div className="relative w-20 h-20 flex items-center justify-center bg-white-bg dark:bg-surface rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-500/50 transition-all duration-250 hover:scale-110 duration-250">
+                                                        <div className="relative w-20 h-20 flex items-center justify-center bg-white-bg dark:bg-surface rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-500/50 transition-all duration-250 hover:scale-110">
                                                             <svg width="0" height="0" className="absolute">
                                                                 <linearGradient id="empty-msg-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                                                                     <stop stopColor="oklch(64.5% 0.246 16.439)" offset="0%" />
@@ -305,7 +305,7 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                     }
                                 </div>
                                 {/* Input */}
-                                <form onSubmit={handleSend} className="flex-none px-2.5 py-3 lg:px-5 bg-white-bg dark:bg-dark-bg border-t border-slate-200 dark:border-surface transition-all duration-250">
+                                <form onSubmit={handleSend} className="flex-none px-2.5 py-3.25 lg:px-5 bg-white-bg dark:bg-dark-bg border-t border-slate-200 dark:border-surface transition-all duration-250">
                                     <div className="mx-auto px-2.5 py-1.25 lg:pl-5 flex items-center bg-slate-50 dark:bg-surface/50 rounded-xl shadow-xl border border-slate-200 dark:border-surface focus-within:border-rose-500 transition-all duration-250">
                                         <input type="text" value={messageText}
                                             onChange={(e) => {
@@ -320,8 +320,8 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                                 }
                                             }}
                                             placeholder="Type Message..." className="flex-1 bg-transparent border-none outline-none placeholder:text-slate-500 text-surface dark:text-white" />
-                                        <button type="button" className="hidden sm:block p-1.25 lg:px-2.5 text-slate-500 hover:text-rose-500 transition-all duration-250 cursor-pointer"><Smile size={20} /></button>
-                                        <button type="button" className="hidden sm:block p-1.25 lg:px-2.5 text-slate-500 hover:text-indigo-500 transition-all duration-250 cursor-pointer"><Paperclip size={20} /></button>
+                                        <button type="button" className="hidden md:block p-1.25 lg:px-2.5 text-slate-500 hover:text-rose-500 transition-all duration-250 cursor-pointer"><Smile size={20} /></button>
+                                        <button type="button" className="hidden md:block p-1.25 lg:px-2.5 text-slate-500 hover:text-indigo-500 transition-all duration-250 cursor-pointer"><Paperclip size={20} /></button>
                                         <button type="submit" className="p-1.25 lg:px-2.5 flex items-center justify-center hover:scale-110 hover:rotate-45 transition-all duration-250 cursor-pointer">
                                             <svg width="0" height="0" className="absolute">
                                                 <linearGradient id="send-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
@@ -333,11 +333,11 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                                         </button>
                                     </div>
                                 </form>
-                            </>
+                            </div>
                         )
                     ) : (
                         <div className="h-full flex flex-col items-center justify-center gap-3.5 text-center p-10 chat-background-pattern">
-                            <div className="relative w-20 h-20 flex items-center justify-center bg-white-bg dark:bg-surface rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-500/50 transition-all duration-250 hover:scale-110 duration-250">
+                            <div className="relative w-20 h-20 flex items-center justify-center bg-white-bg dark:bg-surface rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-500/50 transition-all duration-250 hover:scale-110">
                                 <svg width="0" height="0" className="absolute">
                                     <linearGradient id="empty-conv-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                                         <stop stopColor="oklch(64.5% 0.246 16.439)" offset="0%" />
@@ -348,7 +348,7 @@ const ChatBox = ({ setIsSidebarOpen, selectedChatId }: ChatBoxProps) => {
                             </div>
                             <h2 className="text-2xl font-bold text-surface dark:text-white">Your Inbox is Waiting</h2>
                             <p className="max-w-sm text-base text-slate-500 dark:text-slate-400">Select a conversation to start.</p>
-                            <button onClick={() => setIsSidebarOpen(true)} className="sm:hidden px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-bold rounded-xl shadow-xl transition-all duration-250">Show Contacts</button>
+                            <button onClick={() => setIsSidebarOpen(true)} className="md:hidden px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-bold rounded-xl shadow-xl transition-all duration-250">Show Contacts</button>
                         </div>
                     )
                 }

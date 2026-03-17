@@ -121,7 +121,7 @@ const ChatSidebar = ({ isSidebarOpen, setIsSidebarOpen, selectedChatId, setSelec
     return (
         <>
             <aside className={cn(
-                "fixed inset-y-0 left-0 w-full sm:w-100 h-full flex flex-col bg-white-bg dark:bg-dark-bg border-r border-slate-200 dark:border-surface transition-all duration-250 sm:relative sm:translate-x-0 z-50",
+                "fixed inset-y-0 left-0 w-full md:w-100 h-full flex flex-col bg-white-bg dark:bg-dark-bg border-r border-slate-200 dark:border-surface transition-all duration-250 md:relative md:translate-x-0 z-50",
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             )}>
                 {/* Sidebar Header */}
@@ -147,7 +147,7 @@ const ChatSidebar = ({ isSidebarOpen, setIsSidebarOpen, selectedChatId, setSelec
                         </button>
                         <button
                             onClick={() => setIsSidebarOpen(false)}
-                            className="sm:hidden p-1.25 lg:px-2.5 text-slate-500 cursor-pointer"
+                            className="md:hidden p-1.25 lg:px-2.5 text-slate-500 cursor-pointer"
                         >
                             <X size={20} />
                         </button>

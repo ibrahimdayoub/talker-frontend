@@ -37,7 +37,7 @@ export default function Signin() {
     return (
         <div className="relative min-h-screen p-5 flex items-center justify-center bg-white-bg dark:bg-dark-bg transition-all duration-250 background-pattern-05">
             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-800/5 to-rose-600/10 pointer-events-none" />
-            <div className="relative w-full max-w-md p-5 sm:px-10 sm:py-7.5 space-y-10 bg-white-bg/70 dark:bg-dark-bg/90 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl border border-slate-200 dark:border-surface">
+            <div className="relative w-full max-w-md p-5 md:px-10 md:py-7.5 space-y-10 bg-white-bg/70 dark:bg-dark-bg/90 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl border border-slate-200 dark:border-surface">
                 {/* Header */}
                 <div className="flex flex-col gap-1.25 items-center text-center">
                     <Link href="/" title='Bero Talker Messanger' className="h-15 w-15 mb-1.25 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-rose-500 shadow-lg shadow-indigo-500/25 cursor-pointer">

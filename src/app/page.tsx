@@ -32,17 +32,17 @@ export default function Home() {
             }
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Version 1.0 is live</span>
           </div>
-          <h1 className="text-6xl sm:text-8xl font-black tracking-tighter">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter">
             <span className="text-surface dark:text-white">Bero</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-rose-500 to-rose-500">{" "} Talker</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
             Where every word matters, in <span className="text-surface dark:text-white italic">real-time</span>.
             Experience the future of seamless messaging today.
           </p>
         </div>
         {/* Feature Tags */}
-        <div className="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-5">
           <div className="p-3.5 bg-white-bg dark:bg-surface/50 rounded-xl border border-slate-200 dark:border-slate-500 shadow-lg transition-all duration-250 group">
             <Zap className="mx-auto mb-1.25 text-indigo-500 group-hover:scale-110 transition-transform" size={25} />
             <span className="text-sm uppercase text-slate-500 dark:text-slate-200">Real-time Sockets</span>
@@ -57,16 +57,16 @@ export default function Home() {
           </div>
         </div>
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2.5 md:gap-5">
           <Link
             href="/signin"
-            className="w-full sm:w-56 px-10 py-3.5 sm:text-lg font-medium bg-white-bg dark:bg-surface text-surface dark:text-white border border-slate-200 dark:border-slate-500 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-500 shadow-lg transition-all duration-250 text-center"
+            className="w-full md:w-56 px-10 py-3.5 md:text-lg font-medium bg-white-bg dark:bg-surface text-surface dark:text-white border border-slate-200 dark:border-slate-500 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-500 shadow-lg transition-all duration-250 text-center"
           >
             Sign In
           </Link>
           <Link
             href="/signup"
-            className="w-full sm:w-56 px-10 py-3.5 flex items-center justify-center gap-2.5 sm:text-lg font-bold bg-gradient-to-r from-indigo-500 to-rose-500 text-white rounded-xl shadow-xl shadow-rose-500/25 hover:shadow-indigo-500/25 transform transition-all duration-250 hover:-translate-y-0.5 active:scale-95 text-center"
+            className="w-full md:w-56 px-10 py-3.5 flex items-center justify-center gap-2.5 md:text-lg font-bold bg-gradient-to-r from-indigo-500 to-rose-500 text-white rounded-xl shadow-xl shadow-rose-500/25 hover:shadow-indigo-500/25 transform transition-all duration-250 hover:-translate-y-0.5 active:scale-95 text-center"
           >
             Get Started <ChevronRight size={25} />
           </Link>

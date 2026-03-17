@@ -36,9 +36,9 @@ const TypingIndicator = ({
     const userDisplay = getUserDisplay();
 
     return (
-        <div className="flex items-end gap-2.5 max-w-[75%] sm:max-w-[50%]">
+        <div className="flex items-end gap-2.5 max-w-[75%] md:max-w-[50%]">
             {/* Avatar */}
-            <div className="w-10 h-10 flex-none flex items-center justify-center bg-gradient-to-tr from-rose-200/50 to-rose-500/50 dark:from-indigo-500/25 dark:to-indigo-800/50 text-rose-400 dark:text-indigo-200 text-sm font-black border border-slate-200/50 dark:border-indigo-800/50 rounded-lg overflow-hidden">
+            <div className="w-10 h-10 flex-none flex items-center justify-center bg-gradient-to-tr from-rose-200/50 to-rose-500/50 dark:from-indigo-500/25 dark:to-indigo-800/50 text-rose-400 dark:text-indigo-200 text-sm font-black border border-slate-200/50 dark:border-indigo-800/50 rounded-xl overflow-hidden">
                 {userDisplay.avatar ? (
                     <img
                         src={`${baseUrl}${userDisplay.avatar}`}

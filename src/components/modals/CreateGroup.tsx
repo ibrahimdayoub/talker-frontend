@@ -97,7 +97,7 @@ export default function CreateGroup({ isOpen, onClose }: CreateGroupProps) {
                     </button>
                 </div>
                 {/* Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="p-5 sm:px-7.5 sm:pb-7.5 space-y-5">
+                <form onSubmit={handleSubmit(onSubmit)} className="p-5 md:px-7.5 md:pb-7.5 space-y-5">
                     {/* Group Name */}
                     <div className="space-y-2.5">
                         <label className="flex items-center gap-2.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1.25">

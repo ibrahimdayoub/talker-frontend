@@ -138,7 +138,7 @@ export default function MyProfile({ user, isOpen, onClose }: MyProfileProps) {
                     </div>
                 </div>
                 {/* Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="p-5 sm:px-10 sm:pb-7.5 space-y-5">
+                <form onSubmit={handleSubmit(onSubmit)} className="p-5 md:px-10 md:pb-7.5 space-y-5">
                     {/* Readonly Info */}
                     <div className="flex flex-wrap gap-2.5">
                         <div className="flex items-center gap-2.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1.25">

@@ -100,7 +100,7 @@ export default function ConversationInfo({ conversation, isOpen, onClose }: Conv
                     </div>
                 </div>
                 {/* Chat Info */}
-                <div className="px-5 sm:px-10 pb-5 sm:pb-7.5 space-y-5">
+                <div className="px-5 md:px-10 pb-5 md:pb-7.5 space-y-5">
                     {/* Name & Status & Types */}
                     <div className="text-center space-y-2.5">
                         <h1 className="text-2xl font-black text-surface dark:text-white truncate">{displayName}</h1>
