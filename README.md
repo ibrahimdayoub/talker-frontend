@@ -1,0 +1,143 @@
+# 🎨 Bero Talker - Web App
+
+The official web client for **Bero Talker**. Built with **NextJs** and **TypeScript**, this application provides a seamless and intuitive user interface for real-time messaging, leveraging the platform's high-performance backend API.
+
+---
+
+> [!IMPORTANT]
+> **📺 Watch the Demo:** Check out the **[App Demo Video](https://youtu.be/dWa0VzdyeFo)** to see **Bero Talker** in action, showcasing the smooth UI, chat management, and real-time actions.
+
+---
+
+## 🚀 Features
+
+-  **Real-time Messaging:** Instant send/receive messages via WebSocket connection to the backend.
+-  **Modern Authentication:** Secure login and registration flows using JWT tokens (Access & Refresh).
+-  **Conversation Interface:** Clean, organized views for direct messages and group chats.
+-  **Live User Experience:**
+    -   See when other users are typing.
+    -   Message read receipts (Sent, Delivered, Read).
+    -   Real-time online/offline user presence indicators.
+    -   Responsive Design: Optimized for desktop, tablet, and mobile devices.
+    -   State Management: Efficient client-side state handling with Zustand.
+    -   User Profiles: View and edit your profile, see other users' details.
+
+---
+
+## 🛠 Tech Stack
+
+-   **Framework/Library:** [Next.js](https://nextjs.org/)
+-   **Real-time Client:** [Socket.io-client](https://socket.io/docs/v4/client-api/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **State Management:** [Zustand](https://github.com/pmndrs/zustand)
+-   **HTTP Client:** [Axios](https://axios-http.com/) for API calls
+-   **Icons:** [Lucide React](https://lucide.netlify.app/)
+-   **Form Validation:** [Zod](https://zod.dev/) (for schema validation with `zod`)
+-   **Language:** TypeScript
+  
+---
+
+## 📂 Project Structure
+
+The project follows a modern Next.js App Router structure for maximum maintainability and scalability:
+
+```
+src/
+├── app/ # App Router pages and routing (Next.js 15)
+│ ├── (auth)/ # Authentication routes group (signin, signup)
+│ ├── chat/ # Main chat interface and messaging
+│ ├── globals.css # Global styles and Tailwind imports
+│ ├── layout.tsx # Root layout with providers
+│ └── page.tsx # Home page / Landing page
+│
+├── components/ # Reusable UI components
+│ ├── ui/ # Core design system components (Button, Input, Modal)
+│ └── modals/ # Complex modal components (MyProfile, CreateGroup)
+│
+├── lib/ # Core application logic and configurations
+│ ├── hooks/ # Custom React hooks with React Query
+│ │ ├── useAuth.ts
+│ │ ├── useConversations.ts
+│ │ ├── useMessage.ts
+│ │ ├── useSocket.ts
+│ │ └── useUser.ts
+│ ├── api.ts # Axios instance and API service functions
+│ └── utils.ts # Helper functions and formatters
+│
+├── store/ # Zustand state management
+│ └── useAuthStore.ts # Authentication state
+│
+└── types/ # Global TypeScript interfaces and types
+└── user.types.ts # User, Profile types
+```
+
+---
+
+## 📋 Prerequisites
+
+Before running the project, ensure you have:
+-   Node.js (v18 or higher)
+-   `npm` or `yarn`
+
+---
+
+## ⚙️ Installation & Setup
+
+1. **Clone the repository:**
+   
+   ```
+   git clone https://github.com/ibrahimdayoub/talker-frontend.git
+   cd talker-frontend
+   ```
+   
+3. **Install dependencies:**
+   
+   ```
+   npm install
+   ```
+   
+5. **Environment Configuration: Create a .env file in the root directory and add your credentials:**
+   
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   NEXT_PUBLIC_SOCKET_URL=http://localhost:5000
+   ```
+   
+6. **Start the project:**
+    
+   ```
+   npm run dev
+   ```
+   
+---
+
+## 📡 Connecting to the Backend
+
+This frontend client communicates with the Bero Talker Backend API.
+
+-   **REST API:** Used for authentication, fetching users, conversations, and message history.
+-   **WebSocket (Socket.io):** Used for all real-time events (new messages, typing, status updates).
+
+Make sure your backend server is running and the URLs in your .env file are correct.
+
+---
+
+## 📌 Screenshots
+
+<img src="images/screencapture-01" alt="screencapture-01" width="75%">
+<img src="images/screencapture-02" alt="screencapture-02" width="75%">
+<img src="images/screencapture-03" alt="screencapture-03" width="75%">
+<img src="images/screencapture-04" alt="screencapture-04" width="75%">
+<img src="images/screencapture-05" alt="screencapture-05" width="75%">
+<img src="images/screencapture-06" alt="screencapture-06" width="75%">
+<img src="images/screencapture-07" alt="screencapture-07" width="75%">
+<img src="images/screencapture-08" alt="screencapture-08" width="75%">
+<img src="images/screencapture-09" alt="screencapture-09" width="75%">
+<img src="images/screencapture-10" alt="screencapture-10" width="75%">
+
+---
+
+## 🔗 Related Project
+This web app is powered by the **[Bero Talker Backend API](https://github.com/ibrahimdayoub/talker-backend)**
+
+---

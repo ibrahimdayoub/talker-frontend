@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import { Menu, MessageSquare, MoreVertical, Paperclip, Phone, Send, Smile, Video, Loader2, Ghost } from 'lucide-react';
 import { debounce } from 'lodash';
-import { User } from '@/types/user';
+import { User } from '@/types/user.types';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useConversationApi } from '@/lib/hooks/useConversation';
 import { useMessageApi } from '@/lib/hooks/useMessage';

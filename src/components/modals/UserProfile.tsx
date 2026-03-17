@@ -1,7 +1,7 @@
 "use client";
 
 import { X, Mail, MessageCircle, User as UserIco, Calendar, Loader2 } from "lucide-react";
-import { User } from "@/types/user";
+import { User } from "@/types/user.types";
 import { useUserApi } from "@/lib/hooks/useUser";
 import { cn } from "@/lib/utils";
 

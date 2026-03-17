@@ -7,7 +7,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from "@/lib/utils";
 import { useUserApi } from "@/lib/hooks/useUser";
-import { User } from "@/types/user";
+import { User } from "@/types/user.types";
 
 interface MyProfileProps {
     user: User | null;
