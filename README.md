@@ -1,6 +1,6 @@
 # 🎨 Bero Talker - Web App
 
-The official web client for **Bero Talker**. Built with **NextJs** and **TypeScript**, this application provides a seamless and intuitive user interface for real-time messaging, leveraging the platform's high-performance backend API.
+The real-time messaging web client for **Bero Talker**. Built with **NextJs** and **TypeScript**, this application delivers a seamless chat experience with instant updates, secure authentication, and smooth state management.
 
 ---
 
@@ -14,6 +14,7 @@ The official web client for **Bero Talker**. Built with **NextJs** and **TypeScr
 -  **Real-time Messaging:** Instant send/receive messages via WebSocket connection to the backend.
 -  **Modern Authentication:** Secure login and registration flows using JWT tokens (Access & Refresh).
 -  **Conversation Interface:** Clean, organized views for direct messages and group chats.
+-  **Efficient Data Fetching:** Powered by **React Query** for automatic caching, background updates, and optimized server state management.
 -  **Live User Experience:**
     -   See when other users are typing.
     -   Message read receipts (Sent, Delivered, Read).
@@ -29,7 +30,9 @@ The official web client for **Bero Talker**. Built with **NextJs** and **TypeScr
 -   **Framework/Library:** [Next.js](https://nextjs.org/)
 -   **Real-time Client:** [Socket.io-client](https://socket.io/docs/v4/client-api/)
 -   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **State Management:** [Zustand](https://github.com/pmndrs/zustand)
+-   **State Management:** 
+    -   [Zustand](https://github.com/pmndrs/zustand) (Client State)
+    -   [TanStack Query (React Query)](https://tanstack.com/query/latest) (Server State)
 -   **HTTP Client:** [Axios](https://axios-http.com/) for API calls
 -   **Icons:** [Lucide React](https://lucide.netlify.app/)
 -   **Form Validation:** [Zod](https://zod.dev/) (for schema validation with `zod`)
@@ -43,16 +46,16 @@ The project follows a modern Next.js App Router structure for maximum maintainab
 
 ```
 src/
-├── app/ # App Router pages and routing (Next.js 15)
-│ ├── (auth)/ # Authentication routes group (signin, signup)
-│ ├── chat/ # Main chat interface and messaging
-│ ├── globals.css # Global styles and Tailwind imports
-│ ├── layout.tsx # Root layout with providers
-│ └── page.tsx # Home page / Landing page
+├── app/
+│ ├── (auth)
+│ ├── chat/
+│ ├── globals.css
+│ ├── layout.tsx
+│ └── page.tsx
 │
-├── components/ # Reusable UI components
-│ ├── ui/ # Core design system components (Button, Input, Modal)
-│ └── modals/ # Complex modal components (MyProfile, CreateGroup)
+├── components/
+│ ├── modals/
+│ └── ui/
 │
 ├── lib/ # Core application logic and configurations
 │ ├── hooks/ # Custom React hooks with React Query
@@ -61,8 +64,8 @@ src/
 │ │ ├── useMessage.ts
 │ │ ├── useSocket.ts
 │ │ └── useUser.ts
-│ ├── api.ts # Axios instance and API service functions
-│ └── utils.ts # Helper functions and formatters
+│ ├── api.ts
+│ └── utils.ts
 │
 ├── store/ # Zustand state management
 │ └── useAuthStore.ts # Authentication state
@@ -113,7 +116,7 @@ Before running the project, ensure you have:
 
 ## 📡 Connecting to the Backend
 
-This frontend client communicates with the Bero Talker Backend API.
+This frontend client communicates with the **[Bero Talker Backend API](https://github.com/ibrahimdayoub/talker-backend)**.
 
 -   **REST API:** Used for authentication, fetching users, conversations, and message history.
 -   **WebSocket (Socket.io):** Used for all real-time events (new messages, typing, status updates).
@@ -124,16 +127,16 @@ Make sure your backend server is running and the URLs in your .env file are corr
 
 ## 📌 Screenshots
 
-<img src="images/screencapture-01" alt="screencapture-01" width="75%">
-<img src="images/screencapture-02" alt="screencapture-02" width="75%">
-<img src="images/screencapture-03" alt="screencapture-03" width="75%">
-<img src="images/screencapture-04" alt="screencapture-04" width="75%">
-<img src="images/screencapture-05" alt="screencapture-05" width="75%">
-<img src="images/screencapture-06" alt="screencapture-06" width="75%">
-<img src="images/screencapture-07" alt="screencapture-07" width="75%">
-<img src="images/screencapture-08" alt="screencapture-08" width="75%">
-<img src="images/screencapture-09" alt="screencapture-09" width="75%">
-<img src="images/screencapture-10" alt="screencapture-10" width="75%">
+<img src="public/images/screencapture-01.png" alt="screencapture-01" width="75%">
+<img src="public/images/screencapture-02.png" alt="screencapture-02" width="75%">
+<img src="public/images/screencapture-03.png" alt="screencapture-03" width="75%">
+<img src="public/images/screencapture-04.png" alt="screencapture-04" width="75%">
+<img src="public/images/screencapture-05.png" alt="screencapture-05" width="75%">
+<img src="public/images/screencapture-06.png" alt="screencapture-06" width="75%">
+<img src="public/images/screencapture-07.png" alt="screencapture-07" width="75%">
+<img src="public/images/screencapture-08.png" alt="screencapture-08" width="75%">
+<img src="public/images/screencapture-09.png" alt="screencapture-09" width="75%">
+<img src="public/images/screencapture-10.png" alt="screencapture-10" width="75%">
 
 ---
 
